@@ -1,9 +1,20 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>stats</ion-title>
+    <ion-segment value="all">
+      <ion-segment-button *ngFor="let name of ['Summary', 'Lines', 'Pie']"
+        (ionSelect)="selectSegment(name)">
+        <ion-label>{{name}}</ion-label>
+      </ion-segment-button>
+    </ion-segment>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <div [ngSwitch]="selectedSegment">
+    <app-summary *ngSwitchCase="Summary"></app-summary>
+    <app-linear *ngSwitchCase="Lines"></app-linear>
+    <app-summary *ngSwitchDefault></app-summary>
+  </div>
+  
+  
 </ion-content>
